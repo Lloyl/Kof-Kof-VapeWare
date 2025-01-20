@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using MiniGame = GameStats.MiniGame;
@@ -46,27 +45,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGameTransition(MiniGame game)
     {
-        lifeAnimator.SetInteger("LifeLeft", GameStats.Instance.lifes);
-        lifeAnimator.SetBool("IsWinned", GameStats.Instance.Win);
+        lifeAnimator.SetInteger("LifeLeft", GameStats.Instance.life);
+        // lifeAnimator.SetBool("IsWinned", GameStats.Instance.Win);
     }
 
     public IEnumerator ChangeLifeBar()
     {
         yield return new WaitForSeconds(0.3f);
         lifeAnimator.SetTrigger("LessOne");
-    }
-
-    public void LandscapeMode()
-    {
-        StartCoroutine(LandscapeModeStart());
-    }
-
-    private IEnumerator LandscapeModeStart()
-    {
-        yield return new WaitForSeconds(3);
-        landscapeMode.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        landscapeMode.SetActive(false);
     }
 
     public void ActivateTransition()

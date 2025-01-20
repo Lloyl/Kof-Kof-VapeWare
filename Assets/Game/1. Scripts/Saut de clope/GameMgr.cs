@@ -35,7 +35,8 @@ public class GameMgr : MonoBehaviour
         {
             case true when !PlayerCollision.Collision.GetIsHit():
             {
-                GameStats.Instance.Win = true;
+                // GameStats.Instance.Win = true;
+                GameManager.Instance.GameWin();
                 print("on gagne");
                 if (_canPlayAudioClip)
                 {
@@ -50,6 +51,7 @@ public class GameMgr : MonoBehaviour
             case true when PlayerCollision.Collision.GetIsHit():
             {
                 print("on perd");
+                GameManager.Instance.GameLost();
                 if (_canPlayAudioClip)
                 {
                     AudioManager.Instance.PlayAudio("Defaite saut de clope");

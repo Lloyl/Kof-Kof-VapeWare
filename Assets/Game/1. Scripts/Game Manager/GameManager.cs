@@ -9,14 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private SceneLoader loader;
-    [SerializeField] private Animator    animator;
-
+    [SerializeField] private SceneLoader         loader;
+    [SerializeField] public ScoreScene           scoreScene;
+    
     private GameStats      _stats;
     private List<MiniGame> _shuffledMiniGames = new();
     private MiniGame       _currentGame;
 
-    private bool _isRunning;
     private bool _canStart;
 
     private void Start()
@@ -35,14 +34,14 @@ public class GameManager : MonoBehaviour
         NextGame();
     }
 
-    private void NextGame()
+    public void NextGame()
     {
         var index = Random.Range(0, _shuffledMiniGames.Count - 1);
         // _currentGame = _shuffledMiniGames[index];
-        _currentGame = _shuffledMiniGames[4];
+        _currentGame = _shuffledMiniGames[0];
         
         LoadNextGame(_currentGame);
-        _shuffledMiniGames.RemoveAt(index);
+        // _shuffledMiniGames.RemoveAt(index);
         _canStart = true;
     }
 
@@ -76,29 +75,14 @@ public class GameManager : MonoBehaviour
         return list;
     }
 
-    private IEnumerator LaunchTimer()
-    {
-        _isRunning = true;
-        yield return new WaitForSeconds(_stats.timer);
-        _isRunning = false;
-        // _canStart   = true;
-
-        animator.SetBool(_stats.Win ? "IsWinned" : "IsLost", true);
-    }
-
     private void LoadNextGame(MiniGame game)
     {
         // _canStart = false;
         AudioManager.Instance.StopAudio();
 
-        if (game.landscapeMode)
-        {
-            UIManager.Instance.LandscapeMode();
-        }
+        // StartCoroutine(!_stats.Win ? DecrementLife() : IncrementScore());
 
-        StartCoroutine(!_stats.Win ? DecrementLife() : IncrementScore());
-
-        if (_stats.lifes == 0)
+        if (_stats.life == 0)
         {
             UIManager.Instance.FailMenu();
         }
@@ -107,7 +91,8 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.ActivateTransition();
             UIManager.Instance.UpdateGameTransition(game);
 
-            StartCoroutine(loader.ChangeMiniGame(game.name));
+            LevelLoader.Instance.LoadLevel(game.name.ToString());
+            // StartCoroutine(loader.ChangeMiniGame(game.name));
         }
     }
 
@@ -125,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(UIManager.Instance.ChangeLifeBar());
         yield return new WaitForSeconds(0.5f);
-        _stats.lifes--;
+        _stats.life--;
     }
 
     private IEnumerator IncrementScore()
@@ -136,10 +121,35 @@ public class GameManager : MonoBehaviour
 
     private void StartMiniGame()
     {
-        StartCoroutine(loader.ActivateMiniGame());
+        // StartCoroutine(loader.ActivateMiniGame());
         UIManager.Instance.HideTransition();
         UIManager.Instance.UpdateGameStart(_currentGame);
-        StartCoroutine(LaunchTimer());
-        _stats.Win = false;
+        // StartCoroutine(LaunchTimer());
+        // _stats.Win = false;
+    }
+
+    public void GameWin()
+    {
+        GameStats.Instance.score++;
+        StartCoroutine(StartShowScore(true));
+    }
+    
+    public void GameLost()
+    {
+        GameStats.Instance.life--;
+        if (GameStats.Instance.life == 0)
+        {
+            UIManager.Instance.FailMenu();
+        }
+        else
+        {
+            StartCoroutine(StartShowScore(false));
+        }
+    }
+    
+    private IEnumerator StartShowScore(bool win)
+    {
+        yield return new WaitForSeconds(1.5f);
+        scoreScene.ActivateScoreUI(win);
     }
 }

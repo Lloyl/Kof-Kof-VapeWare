@@ -16,8 +16,9 @@ public class BabyClopeVictoryManager : MonoBehaviour
 
     public void Win()
     {
+        GameManager.Instance.GameWin();
+        
         AudioManager.Instance.PlayAudio("But Baby");
-        GameStats.Instance.Win = true;
         playerAnimator.SetBool(_WIN, true);
         keeperAnimator.SetBool(_WIN, true);
         safeAnimator.SetBool(_WIN, true);
@@ -27,6 +28,8 @@ public class BabyClopeVictoryManager : MonoBehaviour
 
     public void Lose()
     {
+        GameManager.Instance.GameLost();
+        
         playerAnimator.SetBool(_LOSE, true);
         keeperAnimator.SetBool(_LOSE, true);
         bgAnimator.SetBool(_LOSE, true);

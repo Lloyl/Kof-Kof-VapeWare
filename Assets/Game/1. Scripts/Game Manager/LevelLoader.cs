@@ -6,6 +6,7 @@ public class LevelLoader : MonoBehaviour
 {
     private static readonly int         _START = Animator.StringToHash("Start");
     public static           LevelLoader Instance { get; private set; }
+    
 
     [SerializeField] private Animator transition;
 
@@ -38,6 +39,17 @@ public class LevelLoader : MonoBehaviour
             if (async.progress >= 0.9f)
                 async.allowSceneActivation = true;
 
+            yield return null;
+        }
+    }
+    
+    public IEnumerator UnloadLevel(string levelName)
+    {
+        var async = SceneManager.UnloadSceneAsync(levelName);
+        if (async == null) yield break;
+
+        while (!async.isDone)
+        {
             yield return null;
         }
     }

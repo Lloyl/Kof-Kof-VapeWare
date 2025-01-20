@@ -1,4 +1,0 @@
-﻿OBJECTIFS:
-- 1: faire un jeu clean, maintenable et lisible pour les autres dev
-- 2: avoir un univers cohérent à travers les différentes scènes et mini-jeux
-- 3: build le jeu sur Web, Android et iOS
