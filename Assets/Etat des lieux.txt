@@ -1,0 +1,52 @@
+﻿Général:
+taille ajustable
+Compteur de vie plus long || plus petit x3
+mettre une bord commune (style périmètre) 
+peuple des clopes
+modifier audio
+bord (bordures haut bas)
+style graphique jeux généralisé
+style graphique l'app/borne
+Commenter
+
+Côté prog : 
+normalisé les noms et la syntaxe du code
+
+Menu : 
+Trouver un nouveau nom
+background
+animation :  back -> logo -> bouton
+Changer les boutons : logo texte
+
+Transitions :
+Changer le rideau
+changer Timer
+
+Menu de fin:
+styles boutons
+la musique change et ne reprend pas quand on relance depuis réessayer ou le menu
+
+Prend pas la taffe :
+faire fonctionner la montée de la main
+ajuster la silhouette 
+ajustement bras dealer (rotation?)
+remplacer le dealer par une clope avec la capuche qui fume sur sa tête
+
+Saut de haie :
+Passer vertical
+réajuster les structure graphique en conséquence
+avertissement obstacle 
+collision (problème délais)
+problème superposition animation perso pas content(pas visible) et défaite
+
+Brosse tes dents :
+réajuster force et zone de brossage 
+designe brosse et/ou mousse
+Retester taille du but et latence tir et zone balayage gardien
+
+BabyClope :
+Gardien clope de but
+idée : le but devient une tirelire, le gardien devient le consommateur, et c'est un clope qui tire qui casse la tirelire.
+
+Tempête de clope:
+retirer/remplacer la pluie de clope moche en cas de défaite
