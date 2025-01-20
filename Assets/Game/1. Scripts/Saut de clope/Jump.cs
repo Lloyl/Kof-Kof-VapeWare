@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    private CharacterController _characterController;
-    private Vector3 _moveDir;
-    [SerializeField] private Animator anim;
+    private static readonly  int                 _IS_GROUNDED = Animator.StringToHash("IsGrounded");
+    private                  CharacterController _characterController;
+    private                  Vector3             _moveDir;
+    [SerializeField] private Animator            anim;
 
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
@@ -36,6 +35,6 @@ public class Jump : MonoBehaviour
         _moveDir.y -= gravity * Time.deltaTime;
         _characterController.Move(_moveDir * Time.deltaTime);
 
-        anim.SetBool("IsGrounded", _characterController.isGrounded);
+        anim.SetBool(_IS_GROUNDED, _characterController.isGrounded);
     }
 }

@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.894, g: 0.25389603, b: 0.25389603, a: 1}
+  m_Color: {r: 0.84400004, g: 0.313124, b: 0.313124, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PERDU
+  m_text: PERDU!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87a57d4255813c1488d86e407aa2461f, type: 2}
   m_sharedMaterial: {fileID: -8431969628855602906, guid: 87a57d4255813c1488d86e407aa2461f, type: 2}
