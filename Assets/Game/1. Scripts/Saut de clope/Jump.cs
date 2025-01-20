@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    private CharacterController _characterController;
-    private Vector3 _moveDir;
-    [SerializeField] private Animator anim;
+    private static readonly  int                 _IS_GROUNDED = Animator.StringToHash("IsGrounded");
+    private                  CharacterController _characterController;
+    private                  Vector3             _moveDir;
+    [SerializeField] private Animator            anim;
 
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
@@ -29,13 +28,13 @@ public class Jump : MonoBehaviour
         #endif
 
         #if UNITY_ANDROID || UNITY_IPHONE // si on est sur mobile
-        if(Input.touches.Length >= 1 && cc.isGrounded){
-            moveDir.y = jumpForce;
+        if(Input.touches.Length >= 1 && _characterController.isGrounded){
+            _moveDir.y = jumpForce;
         }
         #endif
         _moveDir.y -= gravity * Time.deltaTime;
         _characterController.Move(_moveDir * Time.deltaTime);
 
-        anim.SetBool("IsGrounded", _characterController.isGrounded);
+        anim.SetBool(_IS_GROUNDED, _characterController.isGrounded);
     }
 }
