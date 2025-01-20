@@ -29,8 +29,8 @@ public class Jump : MonoBehaviour
         #endif
 
         #if UNITY_ANDROID || UNITY_IPHONE // si on est sur mobile
-        if(Input.touches.Length >= 1 && cc.isGrounded){
-            moveDir.y = jumpForce;
+        if(Input.touches.Length >= 1 && _characterController.isGrounded){
+            _moveDir.y = jumpForce;
         }
         #endif
         _moveDir.y -= gravity * Time.deltaTime;
