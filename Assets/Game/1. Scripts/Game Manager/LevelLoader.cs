@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     private static readonly int         _START = Animator.StringToHash("Start");
+    private static readonly int         _END   = Animator.StringToHash("End");
     public static           LevelLoader Instance { get; private set; }
     
 
@@ -18,16 +19,18 @@ public class LevelLoader : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void LoadLevel(string levelName, LoadSceneMode mode = LoadSceneMode.Single)
+    public void LoadLevel(string levelName, LoadSceneMode mode = LoadSceneMode.Single, bool withTransition = true)
     {
-        StartCoroutine(LoadLevelAsync(levelName, mode));
+        StartCoroutine(LoadLevelAsync(levelName, mode, withTransition));
     }
 
-    private IEnumerator LoadLevelAsync(string levelName, LoadSceneMode mode)
+    private IEnumerator LoadLevelAsync(string levelName, LoadSceneMode mode, bool withTransition)
     {
-        transition.SetTrigger(_START);
-
-        yield return new WaitForSeconds(transitionTime);
+        if (withTransition)
+        {
+            transition.SetTrigger(_START);
+            yield return new WaitForSeconds(transitionTime);
+        }
 
         var async = SceneManager.LoadSceneAsync(levelName, mode);
         if (async == null) yield break;
@@ -52,5 +55,10 @@ public class LevelLoader : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    public void ShowLevel()
+    {
+        transition.SetTrigger(_END);
     }
 }

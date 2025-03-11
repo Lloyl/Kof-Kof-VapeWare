@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3b909b03177b81641bb52b73a99804ed, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -891,10 +891,9 @@ GameObject:
   - component: {fileID: 638737061}
   - component: {fileID: 638737060}
   - component: {fileID: 638737062}
-  - component: {fileID: 638737063}
   m_Layer: 0
   m_Name: Clope
-  m_TagString: Untagged
+  m_TagString: Clope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,19 +989,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7100003, y: 5.8800006, z: 0.20000003}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &638737063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638737058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce28aff890802548986b2fde977e773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 2087933667}
 --- !u!1 &649313903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,6 +1996,10 @@ PrefabInstance:
       value: safebox_sketchfab
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
+      propertyPath: m_TagString
+      value: BCSafebox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2070,9 +2060,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1019220428}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1019220432}
     - targetCorrespondingSourceObject: {fileID: -397688570212231091, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1019220426}
@@ -2160,19 +2147,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.354958, y: 0.40063202, z: 0.29940748}
   m_Center: {x: -0.26930052, y: 0.20017505, z: 0.034747545}
---- !u!114 &1019220432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019220423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ed64283e782d640949574eae93464c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 2087933667}
 --- !u!1 &1038157843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4507900262165122138, guid: 993e4bbd8287d97459fc54de5d04f637, type: 3}
@@ -3905,7 +3879,7 @@ GameObject:
   - component: {fileID: 2087933668}
   - component: {fileID: 2087933667}
   m_Layer: 0
-  m_Name: Victory Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3929,6 +3903,7 @@ MonoBehaviour:
   bgAnimator: {fileID: 1889288260}
   pointsAnimator: {fileID: 1571295242}
   coinBody: {fileID: 879928710}
+  coinMovements: {fileID: 879928711}
 --- !u!4 &2087933668
 Transform:
   m_ObjectHideFlags: 0

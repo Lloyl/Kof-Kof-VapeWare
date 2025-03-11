@@ -6,7 +6,8 @@ public class MenuButtons : MonoBehaviour
     
     public void LaunchGame()
     {
-        LevelLoader.Instance.LoadLevel(Constants.MANAGEMENT_SCENE);
+        loadingScreen.SetActive(true);
+        LevelLoader.Instance.LoadLevel(Constants.MANAGEMENT_SCENE, withTransition: false);
     }
 
     public void QuitGame()

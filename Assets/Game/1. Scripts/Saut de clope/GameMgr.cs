@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class GameMgr : MonoBehaviour
 {
-    public static GameMgr GManager;
 
-    private bool            _win = true;
     private bool            _timerEnded;
     private bool            _canPlayAudioClip = true;
     private PlayerCollision _playerCollision;
@@ -16,11 +14,6 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private GameObject gameOverBackground;
 
     [SerializeField] private GameObject victoryBackground;
-
-    private void Awake()
-    {
-        GManager = this;
-    }
 
     private void Start()
     {

@@ -40,6 +40,7 @@ public class GameStats : MonoBehaviour
 
     public int            life      { get; set; }
     public int            score     { get; set; }
+    public int            remaining { get; set; }
     public List<MiniGame> miniGames => miniGamesList;
 
     private void Awake()

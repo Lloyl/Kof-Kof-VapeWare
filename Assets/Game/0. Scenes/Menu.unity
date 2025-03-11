@@ -839,7 +839,6 @@ GameObject:
   - component: {fileID: 1028617972}
   - component: {fileID: 1028617971}
   - component: {fileID: 1028617970}
-  - component: {fileID: 1028617974}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -931,8 +930,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1028617974}
-        m_TargetAssemblyTypeName: Start, Assembly-CSharp
+      - m_Target: {fileID: 1277151607}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: LaunchGame
         m_Mode: 1
         m_Arguments:
@@ -981,19 +980,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028617968}
   m_CullTransparentMesh: 1
---- !u!114 &1028617974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028617968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53718b10e75cef4da898c08b170e9ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 1372586046}
 --- !u!1 &1030978696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,7 +1220,6 @@ GameObject:
   - component: {fileID: 1235227305}
   - component: {fileID: 1235227304}
   - component: {fileID: 1235227303}
-  - component: {fileID: 1235227306}
   - component: {fileID: 1235227302}
   m_Layer: 5
   m_Name: Quit
@@ -1327,8 +1312,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1235227306}
-        m_TargetAssemblyTypeName: Quit, Assembly-CSharp
+      - m_Target: {fileID: 1277151607}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1377,18 +1362,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235227300}
   m_CullTransparentMesh: 1
---- !u!114 &1235227306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235227300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc77f2569b3e3574691734d9ad93449b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1277151602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1374,7 @@ GameObject:
   - component: {fileID: 1277151605}
   - component: {fileID: 1277151604}
   - component: {fileID: 1277151606}
+  - component: {fileID: 1277151607}
   m_Layer: 5
   m_Name: ButtonLayout
   m_TagString: Untagged
@@ -1493,6 +1467,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1277151607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277151602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8883f5dc3b4d69b0d5525b2701338f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 1372586046}
 --- !u!1 &1342451137
 GameObject:
   m_ObjectHideFlags: 0

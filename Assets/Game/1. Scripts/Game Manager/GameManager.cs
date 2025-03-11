@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         // _currentGame = _shuffledMiniGames[index];
         _currentGame = _shuffledMiniGames[0];
         
+        UIManager.Instance.UpdateRemainingGames();
+        
         LoadNextGame(_currentGame);
         // _shuffledMiniGames.RemoveAt(index);
         _canStart = true;
@@ -91,8 +93,11 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.ActivateTransition();
             UIManager.Instance.UpdateGameTransition(game);
 
-            LevelLoader.Instance.LoadLevel(game.name.ToString());
+            LevelLoader.Instance.LoadLevel(game.name.ToString(), LoadSceneMode.Additive);
             // StartCoroutine(loader.ChangeMiniGame(game.name));
+            
+            UIManager.Instance.SetBackgroundActive(false);
+            LevelLoader.Instance.ShowLevel();
         }
     }
 

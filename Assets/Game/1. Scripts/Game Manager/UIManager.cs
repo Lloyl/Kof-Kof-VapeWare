@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using MiniGame = GameStats.MiniGame;
 
 public class UIManager : MonoBehaviour
@@ -11,10 +12,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject transitionTab;
     [SerializeField] private GameObject landscapeMode;
     [SerializeField] private GameObject retryTab;
+    
+    [SerializeField] private Image background;
 
     [SerializeField] private Animator lifeAnimator;
 
     [SerializeField] private GameplayController gameplayController;
+
+    [SerializeField] private TMP_Text remainingGames;
 
     public static UIManager Instance { private set; get; }
 
@@ -28,6 +33,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(Instance.gameObject);
         }
+    }
+    
+    public void SetBackgroundActive(bool active)
+    {
+        background.gameObject.SetActive(active);
     }
 
     public void FailMenu()
@@ -70,5 +80,10 @@ public class UIManager : MonoBehaviour
         gamePlayTab.SetActive(true);
         yield return new WaitForSeconds(1);
         gamePlayTab.SetActive(false);
+    }
+    
+    public void UpdateRemainingGames()
+    {
+        remainingGames.text = GameStats.Instance.remaining.ToString();
     }
 }
