@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,41 +8,32 @@ public class AudioManager : MonoBehaviour
 
     [Header("Saut de clope")]
     public AudioClip ambianceSautDeClope;
+
     public AudioClip victoireSautDeClope;
     public AudioClip defaiteSautDeClope;
-    [Header("Dentiste")]
-    public AudioClip outilDentiste;
-    public AudioClip victoireDents;
+
     [Header("Baby")]
     public AudioClip tirBaby;
+
     public AudioClip butBaby;
     public AudioClip loupeBaby;
-    [Header("Corbeille")]
-    public AudioClip clopeCorbeille;
-    [Header("Herbe")]
-    public AudioClip herbeBrule;
-    public AudioClip victoireCorbeille;
-    [Header("Taffe")]
-    public AudioClip tapeTaffe;
-    public AudioClip victoireTaffe;
-    public AudioClip defaiteTaffe;
-    public AudioClip hearthBeat;
 
     [SerializeField] private AudioClip music;
     [SerializeField] private AudioClip defeatMusic;
 
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource effectAudioSource;
+
     [SerializeField] private AudioSource musicAudioSource;
 
     private Dictionary<string, AudioClip> _audioClips;
 
     private void Awake()
     {
-        
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -60,18 +51,9 @@ public class AudioManager : MonoBehaviour
             { "Ambiance saut de clope", ambianceSautDeClope },
             { "Victoire saut de clope", victoireSautDeClope },
             { "Defaite saut de clope", defaiteSautDeClope },
-            { "Outil dentiste", outilDentiste },
             { "Tir Baby", tirBaby },
             { "But Baby", butBaby },
-            { "Loupe Baby", loupeBaby },
-            { "Clope Corbeille", clopeCorbeille },
-            { "Herbe Brule", herbeBrule },
-            { "Victoire Corbeille", victoireCorbeille },
-            { "Victoire Dents", victoireDents },
-            { "Tape taffe", tapeTaffe },
-            { "Victoire Taffe", victoireTaffe },
-            { "Defaite Taffe", defaiteTaffe },
-            { "Hearth Beat", hearthBeat }
+            { "Loupe Baby", loupeBaby }
         };
     }
 
@@ -90,7 +72,7 @@ public class AudioManager : MonoBehaviour
     public void StopAudio()
     {
         if (!effectAudioSource.isPlaying) return;
-        
+
         effectAudioSource.Stop();
     }
 

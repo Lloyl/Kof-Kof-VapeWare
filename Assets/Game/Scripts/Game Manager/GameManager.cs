@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private SceneLoader         loader;
-    [SerializeField] public ScoreScene           scoreScene;
-    
+    [SerializeField] private SceneLoader loader;
+    [SerializeField] public  ScoreScene  scoreScene;
+
     private GameStats      _stats;
     private List<MiniGame> _shuffledMiniGames = new();
     private MiniGame       _currentGame;
@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour
         var index = Random.Range(0, _shuffledMiniGames.Count - 1);
         // _currentGame = _shuffledMiniGames[index];
         _currentGame = _shuffledMiniGames[0];
-        
+
         UIManager.Instance.UpdateRemainingGames();
-        
+
         LoadNextGame(_currentGame);
         // _shuffledMiniGames.RemoveAt(index);
         _canStart = true;
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
             LevelLoader.Instance.LoadLevel(game.name.ToString(), LoadSceneMode.Additive);
             // StartCoroutine(loader.ChangeMiniGame(game.name));
-            
+
             UIManager.Instance.SetBackgroundActive(false);
             LevelLoader.Instance.ShowLevel();
         }
@@ -135,26 +135,32 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
-        GameStats.Instance.score++;
-        StartCoroutine(StartShowScore(true));
+        Debug.Log("Game win");
+        StartCoroutine(GameResult(true));
     }
-    
+
     public void GameLost()
     {
-        GameStats.Instance.life--;
-        if (GameStats.Instance.life == 0)
-        {
-            UIManager.Instance.FailMenu();
-        }
-        else
-        {
-            StartCoroutine(StartShowScore(false));
-        }
+        if (_stats.life == 0) UIManager.Instance.FailMenu();
+        else StartCoroutine(GameResult(false));
     }
-    
+
+    private IEnumerator GameResult(bool win)
+    {
+        if (win) yield return IncrementScore();
+        else yield return DecrementLife();
+
+        yield return LevelLoader.UnloadLevel(_currentGame.name.ToString());
+
+        StartCoroutine(StartShowScore(win));
+    }
+
+
     private IEnumerator StartShowScore(bool win)
     {
+        // show score
         yield return new WaitForSeconds(1.5f);
+        Debug.Log("Show score");
         scoreScene.ActivateScoreUI(win);
     }
 }

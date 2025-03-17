@@ -41,6 +41,7 @@ public class BCGameManager : MonoBehaviour
     // quand la pièce touche le gardien ou le but
     private void OnCoinHit(bool win)
     {
+        Debug.Log("Coin hit");
         if (win) Win();
         else Lose();
     }

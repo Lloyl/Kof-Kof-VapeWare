@@ -46,7 +46,7 @@ public class LevelLoader : MonoBehaviour
         }
     }
     
-    public IEnumerator UnloadLevel(string levelName)
+    public static IEnumerator UnloadLevel(string levelName)
     {
         var async = SceneManager.UnloadSceneAsync(levelName);
         if (async == null) yield break;
