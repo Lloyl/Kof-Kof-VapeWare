@@ -5,8 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Clope
-  - Dent
-  - BCSafebox
+  - BCSafeBox
   layers:
   - Default
   - TransparentFX

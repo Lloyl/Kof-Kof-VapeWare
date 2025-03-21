@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private SceneLoader loader;
-    [SerializeField] public  ScoreScene  scoreScene;
+    [SerializeField] public ScoreScene scoreScene;
 
     private GameStats      _stats;
     private List<MiniGame> _shuffledMiniGames = new();
@@ -82,23 +81,19 @@ public class GameManager : MonoBehaviour
         // _canStart = false;
         AudioManager.Instance.StopAudio();
 
-        // StartCoroutine(!_stats.Win ? DecrementLife() : IncrementScore());
-
         if (_stats.life == 0)
         {
             UIManager.Instance.FailMenu();
+            return;
         }
-        else
-        {
-            UIManager.Instance.ActivateTransition();
-            UIManager.Instance.UpdateGameTransition(game);
 
-            LevelLoader.Instance.LoadLevel(game.name.ToString(), LoadSceneMode.Additive);
-            // StartCoroutine(loader.ChangeMiniGame(game.name));
+        UIManager.Instance.SetTransitionActive(true);
+        UIManager.Instance.UpdateGameTransition(game);
 
-            UIManager.Instance.SetBackgroundActive(false);
-            LevelLoader.Instance.ShowLevel();
-        }
+        LevelLoader.Instance.LoadLevel(GameStats.GetSceneName(game.name), LoadSceneMode.Additive);
+
+        UIManager.Instance.SetBackgroundActive(false);
+        LevelLoader.Instance.ShowLevel();
     }
 
     public void Restart()
@@ -108,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene(nameof(GameStats.SceneName.Menu), LoadSceneMode.Single);
+        SceneManager.LoadScene(nameof(GameStats.SceneName.MENU), LoadSceneMode.Single);
     }
 
     private IEnumerator DecrementLife()
@@ -127,7 +122,7 @@ public class GameManager : MonoBehaviour
     private void StartMiniGame()
     {
         // StartCoroutine(loader.ActivateMiniGame());
-        UIManager.Instance.HideTransition();
+        UIManager.Instance.SetTransitionActive(false);
         UIManager.Instance.UpdateGameStart(_currentGame);
         // StartCoroutine(LaunchTimer());
         // _stats.Win = false;
@@ -150,7 +145,7 @@ public class GameManager : MonoBehaviour
         if (win) yield return IncrementScore();
         else yield return DecrementLife();
 
-        yield return LevelLoader.UnloadLevel(_currentGame.name.ToString());
+        yield return LevelLoader.UnloadLevel(GameStats.GetSceneName(_currentGame.name));
 
         StartCoroutine(StartShowScore(win));
     }
@@ -159,8 +154,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartShowScore(bool win)
     {
         // show score
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f); // attendre la fin de l'animation de fin de jeu
         Debug.Log("Show score");
+        scoreScene.gameObject.SetActive(true);
         scoreScene.ActivateScoreUI(win);
     }
 }
+
+// TODO:
+// - corriger le bug de la transition entre les jeux et du rideau qui ne s'ouvre pas
+// - finir d'implémenter le remaining games
+// - passer par le canvas du Management au lieu de la scène ScoreScene (fais moins de scènes à charger)
+// - ajouter un écran de fin de jeu avec le score final, le nombre de vies restantes et un bouton pour retourner au menu
+// - continuer de refacto le code pour le rendre plus propre et lisible

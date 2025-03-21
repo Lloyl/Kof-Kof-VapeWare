@@ -18,7 +18,6 @@ public class ScoreScene : MonoBehaviour
             : Constants.LOSE_COLOR;
 
         resultText.text = win ? "GAGNÉ!" : "PERDU!";
-        gameObject.SetActive(true);
         StartCoroutine(ShowScore());
     }
 

@@ -2,35 +2,54 @@ using UnityEngine;
 
 public class BCCoinMovements : MonoBehaviour
 {
+    private static readonly int _SHOOT = Animator.StringToHash("Shoot");
+
     [SerializeField] private Rigidbody coinBody;
-    [SerializeField] private int       coinSpeed = 100;
+    [SerializeField] private int       coinSpeed;
 
-    private bool StopCoin { get; set; }
+    [SerializeField] private Animator playerAnimator;
+    
+    [SerializeField] private BCGameManager gameManager;
 
-    public delegate void CoinHit(bool win);
-
-    public event CoinHit OnCoinHitEvent;
+    private bool _hasShoot;
+    private bool _hasHit;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (
-            !collision.gameObject.CompareTag("Clope") ||
-            !collision.gameObject.CompareTag("BCSafebox"))
-            return;
+        if (_hasHit) return;
+        _hasHit = true;
+        
+        coinBody.linearDamping = 15; // stop le coin après le hit
 
-        StopCoin = true;
+        var win = collision.gameObject.CompareTag(Constants.TAG_BC_SAFEBOX);
 
-        coinBody.linearDamping = 13;
-
-        var win = collision.gameObject.CompareTag("Clope") || collision.gameObject.CompareTag("BCSafebox");
-
-        OnCoinHitEvent?.Invoke(win);
+        gameManager.OnCoinHit(win);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (StopCoin) return;
+        // computer
+        #if UNITY_EDITOR || UNITY_STANDALONE
+        if (!Input.GetKeyDown(KeyCode.Mouse0)) return;
 
+        Shoot();
+        #endif
+
+        // mobile
+        #if UNITY_ANDROID || UNITY_IPHONE
+        if (Input.touches.Length < 1) return;
+    
+        Shoot();
+        #endif
+    }
+
+    private void Shoot()
+    {
+        if (_hasShoot) return;
+
+        AudioManager.Instance.PlayAudio(Audio.BC_TIR);
+        playerAnimator.SetBool(_SHOOT, true);
         coinBody.AddForce(Vector3.forward * coinSpeed);
+        _hasShoot = true;
     }
 }

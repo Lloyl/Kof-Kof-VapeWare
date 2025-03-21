@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource musicAudioSource;
 
-    private Dictionary<string, AudioClip> _audioClips;
+    private Dictionary<Audio, AudioClip> _audioClips;
 
     private void Awake()
     {
@@ -46,18 +46,18 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.Play();
 
 
-        _audioClips = new Dictionary<string, AudioClip>
+        _audioClips = new Dictionary<Audio, AudioClip>
         {
-            { "Ambiance saut de clope", ambianceSautDeClope },
-            { "Victoire saut de clope", victoireSautDeClope },
-            { "Defaite saut de clope", defaiteSautDeClope },
-            { "Tir Baby", tirBaby },
-            { "But Baby", butBaby },
-            { "Loupe Baby", loupeBaby }
+            { Audio.SC_AMBIANCE, ambianceSautDeClope },
+            { Audio.SC_WIN, victoireSautDeClope },
+            { Audio.SC_LOSE, defaiteSautDeClope },
+            { Audio.BC_TIR, tirBaby },
+            { Audio.BC_WIN, butBaby },
+            { Audio.BC_LOSE, loupeBaby }
         };
     }
 
-    public void PlayAudio(string situation)
+    public void PlayAudio(Audio situation)
     {
         if (!_audioClips.TryGetValue(situation, out var clip))
         {

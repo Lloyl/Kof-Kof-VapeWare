@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameMgr : MonoBehaviour
+public class SCGameManager : MonoBehaviour
 {
 
     private bool            _timerEnded;
@@ -17,23 +17,23 @@ public class GameMgr : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(WinOrLose));
-        AudioManager.Instance.PlayAudio("Ambiance saut de clope");
+        StartCoroutine(WinOrLose());
+        AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
         _canPlayAudioClip = true;
     }
 
     private void Update()
     {
+        // mdr a revoir ce code, pas une bonne pratique
         switch (_timerEnded)
         {
             case true when !PlayerCollision.Collision.GetIsHit():
             {
-                // GameStats.Instance.Win = true;
                 GameManager.Instance.GameWin();
                 print("on gagne");
                 if (_canPlayAudioClip)
                 {
-                    AudioManager.Instance.PlayAudio("Victoire Saut De Clope");
+                    AudioManager.Instance.PlayAudio(Audio.SC_WIN);
                     _canPlayAudioClip = false;
                 }
 
@@ -47,7 +47,7 @@ public class GameMgr : MonoBehaviour
                 GameManager.Instance.GameLost();
                 if (_canPlayAudioClip)
                 {
-                    AudioManager.Instance.PlayAudio("Defaite saut de clope");
+                    AudioManager.Instance.PlayAudio(Audio.SC_LOSE);
                     _canPlayAudioClip = false;
                 }
 

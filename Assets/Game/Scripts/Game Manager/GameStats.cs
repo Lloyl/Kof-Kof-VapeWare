@@ -22,18 +22,29 @@ public class GameStats : MonoBehaviour
 
     public enum SceneName
     {
-        None,
-        BabyClope,
-        Menu,
-        SautDeHaie,
+        NONE,
+        BABY_CLOPE,
+        MENU,
+        SAUT_DE_HAIE
+    }
+    
+    public static string GetSceneName(SceneName sceneName)
+    {
+        return sceneName switch
+        {
+            SceneName.BABY_CLOPE => "BabyClope",
+            SceneName.MENU => "Menu",
+            SceneName.SAUT_DE_HAIE => "SautDeHaie",
+            _ => "None"
+        };
     }
 
     public enum Interaction
     {
-        Tap,
-        MultiTap,
-        Drag,
-        Rug
+        TAP,
+        MULTI_TAP,
+        DRAG,
+        RUG
     }
 
     public static GameStats Instance { private set; get; }

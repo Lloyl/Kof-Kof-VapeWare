@@ -20,16 +20,16 @@ public class GameplayController : MonoBehaviour
 
         switch (gameplay)
         {
-            case Interaction.Tap:
+            case Interaction.TAP:
                 tap.SetActive(true);
                 break;
-            case Interaction.Drag:
+            case Interaction.DRAG:
                 drag.SetActive(true);
                 break;
-            case Interaction.Rug:
+            case Interaction.RUG:
                 rug.SetActive(true);
                 break;
-            case Interaction.MultiTap:
+            case Interaction.MULTI_TAP:
                 spam.SetActive(true);
                 break;
             default:

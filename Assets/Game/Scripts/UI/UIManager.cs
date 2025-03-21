@@ -6,13 +6,14 @@ using MiniGame = GameStats.MiniGame;
 
 public class UIManager : MonoBehaviour
 {
+    private static readonly  int      _LIFE_LEFT = Animator.StringToHash("LifeLeft");
+    private static readonly  int      _LESS_ONE  = Animator.StringToHash("LessOne");
     [SerializeField] private TMP_Text message;
 
     [SerializeField] private GameObject gamePlayTab;
     [SerializeField] private GameObject transitionTab;
-    [SerializeField] private GameObject landscapeMode;
     [SerializeField] private GameObject retryTab;
-    
+
     [SerializeField] private Image background;
 
     [SerializeField] private Animator lifeAnimator;
@@ -34,7 +35,7 @@ public class UIManager : MonoBehaviour
             Destroy(Instance.gameObject);
         }
     }
-    
+
     public void SetBackgroundActive(bool active)
     {
         background.gameObject.SetActive(active);
@@ -55,24 +56,19 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGameTransition(MiniGame game)
     {
-        lifeAnimator.SetInteger("LifeLeft", GameStats.Instance.life);
+        lifeAnimator.SetInteger(_LIFE_LEFT, GameStats.Instance.life);
         // lifeAnimator.SetBool("IsWinned", GameStats.Instance.Win);
     }
 
     public IEnumerator ChangeLifeBar()
     {
         yield return new WaitForSeconds(0.3f);
-        lifeAnimator.SetTrigger("LessOne");
+        lifeAnimator.SetTrigger(_LESS_ONE);
     }
 
-    public void ActivateTransition()
+    public void SetTransitionActive(bool active)
     {
-        transitionTab.SetActive(true);
-    }
-
-    public void HideTransition()
-    {
-        transitionTab.SetActive(false);
+        transitionTab.SetActive(active);
     }
 
     private IEnumerator DisplayStartTab()
@@ -81,7 +77,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         gamePlayTab.SetActive(false);
     }
-    
+
     public void UpdateRemainingGames()
     {
         remainingGames.text = GameStats.Instance.remaining.ToString();
