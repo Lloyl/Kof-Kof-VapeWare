@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class GameStats : MonoBehaviour
 {
-    [SerializeField] private int playerLife = 3;
+    [SerializeField] public int initialGamesCount = 5;
 
     [SerializeField] private List<MiniGame> miniGamesList;
 
     [System.Serializable]
     public struct MiniGame
     {
-        public SceneName   name;
+        public GameName   name;
         public string      message;
         public Interaction interaction;
 
@@ -20,22 +20,19 @@ public class GameStats : MonoBehaviour
         }
     }
 
-    public enum SceneName
+    public enum GameName
     {
-        NONE,
         BABY_CLOPE,
-        MENU,
         SAUT_DE_HAIE
     }
     
-    public static string GetSceneName(SceneName sceneName)
+    public static string GetSceneName(GameName gameName)
     {
-        return sceneName switch
+        return gameName switch
         {
-            SceneName.BABY_CLOPE => "BabyClope",
-            SceneName.MENU => "Menu",
-            SceneName.SAUT_DE_HAIE => "SautDeHaie",
-            _ => "None"
+            GameName.BABY_CLOPE => "BabyClope",
+            GameName.SAUT_DE_HAIE => "SautDeHaie",
+            _ => null
         };
     }
 
@@ -49,7 +46,6 @@ public class GameStats : MonoBehaviour
 
     public static GameStats Instance { private set; get; }
 
-    public int            life      { get; set; }
     public int            score     { get; set; }
     public int            remaining { get; set; }
     public List<MiniGame> miniGames => miniGamesList;
@@ -59,7 +55,7 @@ public class GameStats : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            life     = playerLife;
+            remaining = initialGamesCount;
         }
         else
         {

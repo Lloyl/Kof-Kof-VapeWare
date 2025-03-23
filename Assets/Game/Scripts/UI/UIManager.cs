@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,8 +7,6 @@ using MiniGame = GameStats.MiniGame;
 
 public class UIManager : MonoBehaviour
 {
-    private static readonly  int      _LIFE_LEFT = Animator.StringToHash("LifeLeft");
-    private static readonly  int      _LESS_ONE  = Animator.StringToHash("LessOne");
     [SerializeField] private TMP_Text message;
 
     [SerializeField] private GameObject gamePlayTab;
@@ -36,39 +35,30 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpdateRemainingGames();
+    }
+
     public void SetBackgroundActive(bool active)
     {
         background.gameObject.SetActive(active);
     }
 
-    public void FailMenu()
+    public void GameOverMenu()
     {
         retryTab.SetActive(true);
-        AudioManager.Instance.Fail();
+        AudioManager.Instance.GameOverAudioMenu();
     }
 
+    // Module non repris, mais qui pourrait être utile (affiche comment jouer au mini jeu)
+
+    // --------------------------
     public void UpdateGameStart(MiniGame game)
     {
         message.text = game.message;
         StartCoroutine(DisplayStartTab());
         gameplayController.ActivateAnimation(game.interaction);
-    }
-
-    public void UpdateGameTransition(MiniGame game)
-    {
-        lifeAnimator.SetInteger(_LIFE_LEFT, GameStats.Instance.life);
-        // lifeAnimator.SetBool("IsWinned", GameStats.Instance.Win);
-    }
-
-    public IEnumerator ChangeLifeBar()
-    {
-        yield return new WaitForSeconds(0.3f);
-        lifeAnimator.SetTrigger(_LESS_ONE);
-    }
-
-    public void SetTransitionActive(bool active)
-    {
-        transitionTab.SetActive(active);
     }
 
     private IEnumerator DisplayStartTab()
@@ -77,6 +67,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         gamePlayTab.SetActive(false);
     }
+
+    // --------------------------
 
     public void UpdateRemainingGames()
     {

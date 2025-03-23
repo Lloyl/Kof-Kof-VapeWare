@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Management.unity
     guid: 3a56d3f350f62c94b8d97d6eee4ba6a8
   - enabled: 1
-    path: Assets/Game/Scenes/ScoreScene.unity
-    guid: 95be5ee4b4c26c246a36d5e48a405608
-  - enabled: 1
     path: Assets/Game/Scenes/BabyClope.unity
     guid: c5253ee6fdb6c3a4e82198ca6cd79871
   - enabled: 1

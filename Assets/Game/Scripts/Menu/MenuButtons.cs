@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class MenuButtons : MonoBehaviour
     public void LaunchGame()
     {
         loadingScreen.SetActive(true);
-        LevelLoader.Instance.LoadLevel(Constants.MANAGEMENT_SCENE, withTransition: false);
+        SceneManager.LoadScene(Constants.MANAGEMENT_SCENE);
     }
 
     public void QuitGame()

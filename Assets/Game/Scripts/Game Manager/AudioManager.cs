@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Singleton instance
     public static AudioManager Instance { get; private set; }
 
     [Header("Saut de clope")]
@@ -45,7 +44,6 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.clip = music;
         musicAudioSource.Play();
 
-
         _audioClips = new Dictionary<Audio, AudioClip>
         {
             { Audio.SC_AMBIANCE, ambianceSautDeClope },
@@ -69,20 +67,36 @@ public class AudioManager : MonoBehaviour
         effectAudioSource.Play();
     }
 
-    public void StopAudio()
+    public void StopEffects()
     {
-        if (!effectAudioSource.isPlaying) return;
+        if (effectAudioSource.isPlaying) return;
 
         effectAudioSource.Stop();
     }
+    
+    public void StopMusic()
+    {
+        musicAudioSource.Stop();
+    }
 
-    public void Fail()
+    public void RestartMusic()
+    {
+        musicAudioSource.Stop();
+
+        musicAudioSource.clip   = music;
+        musicAudioSource.loop   = true;
+        musicAudioSource.volume = 0.1f;
+        musicAudioSource.Play();
+    }
+
+    public void GameOverAudioMenu()
     {
         musicAudioSource.Stop();
         effectAudioSource.Stop();
         musicAudioSource.loop = false;
 
-        musicAudioSource.clip = defeatMusic;
+        musicAudioSource.clip   = defeatMusic;
+        musicAudioSource.volume = 0.5f;
         musicAudioSource.Play();
     }
 }

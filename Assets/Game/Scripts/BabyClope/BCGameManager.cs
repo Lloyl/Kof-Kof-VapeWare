@@ -22,6 +22,7 @@ public class BCGameManager : MonoBehaviour
 
     private void Lose()
     {
+        AudioManager.Instance.PlayAudio(Audio.BC_LOSE);
         playerAnimator.SetBool(_LOSE, true);
         keeperAnimator.SetBool(_LOSE, true);
     }

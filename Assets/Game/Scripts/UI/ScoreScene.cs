@@ -18,13 +18,12 @@ public class ScoreScene : MonoBehaviour
             : Constants.LOSE_COLOR;
 
         resultText.text = win ? "GAGNÉ!" : "PERDU!";
-        StartCoroutine(ShowScore());
+        StartCoroutine(QuitScore());
     }
 
-    private IEnumerator ShowScore()
+    private static IEnumerator QuitScore()
     {
         yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
         GameManager.Instance.NextGame();
     }
 }

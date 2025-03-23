@@ -11,6 +11,7 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private GameObject drag;
     [SerializeField] private GameObject rug;
 
+    // Module à revoir, non utilisé
     public void ActivateAnimation(Interaction gameplay)
     {
         foreach (Transform anim in transform)
