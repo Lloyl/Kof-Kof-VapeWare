@@ -17,19 +17,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameplayController gameplayController;
 
     [SerializeField] private TMP_Text remainingGames;
+    [SerializeField] private TMP_Text countdown;
 
     public static UIManager Instance { private set; get; }
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(Instance.gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     private void Start()
@@ -70,5 +65,15 @@ public class UIManager : MonoBehaviour
     public void UpdateRemainingGames()
     {
         remainingGames.text = GameStats.Instance.remaining.ToString();
+    }
+    
+    public void UpdateCountdown(int time)
+    {
+        countdown.text = $"Temps: {time}s";
+    }
+    
+    public void SetCountdownActive(bool active)
+    {
+        countdown.gameObject.SetActive(active);
     }
 }

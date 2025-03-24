@@ -55,4 +55,16 @@ Le joueur doit appuyer sur l'écran pour empêcher le personnage de prendre une 
 
 ### TempetesDeCigarettesGéantes
 Le joueur doit ramasser les mégots de cigarettes qui tombent du ciel.
+
 -> Status: NON REPRIS
+
+## Systèmes de l'ancienne version gardée mais non repris
+
+### Tutos des mini-jeux
+- Un logo montre comment jouer au jeu: TAP, DRAG, MULTI-TAP, etc.
+- Un texte explique comment jouer au jeu: "TIRER", "SAUTER", "BROSSER", etc.
+
+### Système de temps
+- Chaque mini-jeu a un temps limité pour être réalisé.
+- Un timer est affiché en haut de l'écran.
+- Si le temps est écoulé, le mini-jeu est perdu.

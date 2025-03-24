@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Game.Scripts.Game_Manager;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -15,20 +16,35 @@ public class GameManager : MonoBehaviour
     private readonly List<MiniGame> _shuffledMiniGames = new();
 
     private MiniGame _currentGame;
-
+    
+    [CanBeNull] public IGame CurrentGameManager;
+    private float _remainingTime;
+    
     private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
 
         ShuffleMiniGames();
         NextGame();
+    }
+
+    private void Update()
+    {
+        if (_remainingTime <= 0) return;
+        
+        _remainingTime -= Time.deltaTime;
+        var gameTime = Mathf.CeilToInt(_remainingTime);
+        
+        if (!CurrentGameManager?.IsGameRunning ?? true) return; // if game is running
+
+        UIManager.Instance.UpdateCountdown(gameTime);
+        
+        if (gameTime > 0) return;
+        
+        CurrentGameManager?.GameOver();
+        _remainingTime = 0;
+        UIManager.Instance.SetCountdownActive(false);
     }
 
     public void NextGame()
@@ -64,25 +80,28 @@ public class GameManager : MonoBehaviour
         scoreScene.gameObject.SetActive(false);
 
         UIManager.Instance.SetBackgroundActive(false);
+        UIManager.Instance.SetCountdownActive(true);
+        UIManager.Instance.UpdateCountdown(game.time);
+        _remainingTime = game.time;
+        
         LevelLoader.Instance.LoadLevel(GameStats.GetSceneName(game.name), LoadSceneMode.Additive);
     }
     
-    public void GameWin()
+    public void GameResult(bool win)
     {
-        StartCoroutine(GameResult(true));
+        StartCoroutine(EndGame(win));
     }
-
-    public void GameLost()
+    
+    private IEnumerator EndGame(bool win)
     {
-        StartCoroutine(GameResult(false));
-    }
-
-    private IEnumerator GameResult(bool win)
-    {
-        if (win) GameStats.Instance.score += 10;
+        CurrentGameManager = null;
+        
+        if (win) GameStats.Instance.score += Constants.WIN_SCORE;
 
         UIManager.Instance.SetBackgroundActive(true);
-        yield return LevelLoader.UnloadLevel(GameStats.GetSceneName(_currentGame.name));
+        UIManager.Instance.SetCountdownActive(false);
+        
+        yield return StartCoroutine(LevelLoader.UnloadLevel(_currentGame.name));
         
         StartShowScore(win);
     }

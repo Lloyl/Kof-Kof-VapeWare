@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
+using Game.Scripts.Game_Manager;
 using UnityEngine;
 
-public class SCGameManager : MonoBehaviour
+public class SCGameManager : MonoBehaviour, IGame
 {
-
-    private bool            _timerEnded;
-    private bool            _canPlayAudioClip = true;
+    public bool IsGameRunning { get; set; }
+    
     private PlayerCollision _playerCollision;
 
     [SerializeField] private GameObject victory;
@@ -17,50 +18,42 @@ public class SCGameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WinOrLose());
         AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
-        _canPlayAudioClip = true;
+        
+        GameManager.Instance.CurrentGameManager = this;
+        IsGameRunning = true;
     }
 
-    private void Update()
+    private void OnCollisionEnter(Collision other)
     {
-        // mdr a revoir ce code, pas une bonne pratique
-        switch (_timerEnded)
-        {
-            case true when !PlayerCollision.Collision.GetIsHit():
-            {
-                GameManager.Instance.GameWin();
-                print("on gagne");
-                if (_canPlayAudioClip)
-                {
-                    AudioManager.Instance.PlayAudio(Audio.SC_WIN);
-                    _canPlayAudioClip = false;
-                }
-
-                victory.SetActive(true);
-                victoryBackground.SetActive(true);
-                break;
-            }
-            case true when PlayerCollision.Collision.GetIsHit():
-            {
-                print("on perd");
-                GameManager.Instance.GameLost();
-                if (_canPlayAudioClip)
-                {
-                    AudioManager.Instance.PlayAudio(Audio.SC_LOSE);
-                    _canPlayAudioClip = false;
-                }
-
-                lost.SetActive(true);
-                gameOverBackground.SetActive(true);
-                break;
-            }
-        }
+        var win = other.gameObject.CompareTag(Constants.TAG_CLOPE);
+        
+        IsGameRunning = false;
+        StartCoroutine(Result(win));
     }
 
-    private IEnumerator WinOrLose()
+    public void Win()
     {
-        yield return new WaitForSeconds(5.5f);
-        _timerEnded = true;
+        victory.SetActive(true);
+        victoryBackground.SetActive(true);
+    }
+
+    public void Lost()
+    {
+        lost.SetActive(true);
+        gameOverBackground.SetActive(true);
+    }
+    
+    public void GameOver()
+    {
+        StartCoroutine(Result(false));
+    }
+    
+    private IEnumerator Result(bool win)
+    {
+        if (win) Win();
+        else Lost();
+        yield return new WaitForSeconds(1.5f); // animation time
+        GameManager.Instance.GameResult(win);
     }
 }

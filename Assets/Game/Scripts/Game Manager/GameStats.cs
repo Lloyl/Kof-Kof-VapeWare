@@ -10,13 +10,14 @@ public class GameStats : MonoBehaviour
     [System.Serializable]
     public struct MiniGame
     {
-        public GameName   name;
+        public GameName    name;
         public string      message;
         public Interaction interaction;
+        public int         time;
 
         public override string ToString()
         {
-            return name + " - " + message + " - " + interaction;
+            return name + " - " + message + " - " + interaction + " - " + time;
         }
     }
 
@@ -25,14 +26,14 @@ public class GameStats : MonoBehaviour
         BABY_CLOPE,
         SAUT_DE_HAIE
     }
-    
+
     public static string GetSceneName(GameName gameName)
     {
         return gameName switch
         {
-            GameName.BABY_CLOPE => "BabyClope",
+            GameName.BABY_CLOPE   => "BabyClope",
             GameName.SAUT_DE_HAIE => "SautDeHaie",
-            _ => null
+            _                     => null
         };
     }
 
@@ -48,18 +49,14 @@ public class GameStats : MonoBehaviour
 
     public int            score     { get; set; }
     public int            remaining { get; set; }
+    
     public List<MiniGame> miniGames => miniGamesList;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            remaining = initialGamesCount;
-        }
-        else
-        {
-            Destroy(Instance.gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+        
+        remaining = initialGamesCount;
     }
 }

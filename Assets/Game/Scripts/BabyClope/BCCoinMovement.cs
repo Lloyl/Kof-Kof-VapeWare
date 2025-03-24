@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class BCCoinMovements : MonoBehaviour
 {
-    private static readonly int _SHOOT = Animator.StringToHash("Shoot");
-
     [SerializeField] private Rigidbody coinBody;
     [SerializeField] private int       coinSpeed;
-
-    [SerializeField] private Animator playerAnimator;
     
     [SerializeField] private BCGameManager gameManager;
+    
+    [SerializeField] private GameObject linePath;
 
     private bool _hasShoot;
     private bool _hasHit;
@@ -48,8 +46,8 @@ public class BCCoinMovements : MonoBehaviour
         if (_hasShoot) return;
 
         AudioManager.Instance.PlayAudio(Audio.BC_TIR);
-        playerAnimator.SetBool(_SHOOT, true);
         coinBody.AddForce(Vector3.forward * coinSpeed);
+        linePath.SetActive(false);
         _hasShoot = true;
     }
 }

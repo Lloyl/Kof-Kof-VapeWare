@@ -27,7 +27,6 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger(_START);
         yield return new WaitForSeconds(transitionTime);
 
-
         var async = SceneManager.LoadSceneAsync(levelName, mode);
         if (async == null) yield break;
 
@@ -47,9 +46,12 @@ public class LevelLoader : MonoBehaviour
         var async = SceneManager.UnloadSceneAsync(levelName);
         if (async == null) yield break;
 
-        while (!async.isDone)
-        {
-            yield return null;
-        }
+        // attendre que la scène soit déchargée
+        while (!async.isDone) yield return null;
+    }
+
+    public static IEnumerator UnloadLevel(GameStats.GameName gameName)
+    {
+        yield return UnloadLevel(GameStats.GetSceneName(gameName));
     }
 }
