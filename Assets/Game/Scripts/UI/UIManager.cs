@@ -10,13 +10,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text message;
 
     [SerializeField] private GameObject gamePlayTab;
-    [SerializeField] private GameObject transitionTab;
     [SerializeField] private GameObject retryTab;
 
     [SerializeField] private Image background;
-
-    [SerializeField] private Animator lifeAnimator;
-
+    
     [SerializeField] private GameplayController gameplayController;
 
     [SerializeField] private TMP_Text remainingGames;
