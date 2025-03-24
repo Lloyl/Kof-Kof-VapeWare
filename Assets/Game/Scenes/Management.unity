@@ -555,7 +555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &190365394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218763727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1247.3464}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +822,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276667163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1247.3464}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3750001, y: 1.3750001, z: 1.3750001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2458,7 +2458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b6bee5347c7024081813555d9406bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGamesCount: 7
+  initialGamesCount: 2
   miniGamesList:
   - name: 0
     message: TIRE
@@ -2490,10 +2490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: {fileID: 506646037}
   gamePlayTab: {fileID: 1948546305}
-  transitionTab: {fileID: 0}
   retryTab: {fileID: 190365393}
   background: {fileID: 1390423317}
-  lifeAnimator: {fileID: 0}
   gameplayController: {fileID: 1350900095}
   remainingGames: {fileID: 961560003}
 --- !u!1 &1555234746
@@ -2524,7 +2522,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555234746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1247.3464}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2781,7 +2779,7 @@ Transform:
   m_GameObject: {fileID: 1681402156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.960049, y: -303, z: -907.161}
+  m_LocalPosition: {x: 21.960049, y: -303, z: 0}
   m_LocalScale: {x: 0.7272727, y: 0.7272727, z: 0.7272727}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2880,7 +2878,7 @@ Transform:
   m_GameObject: {fileID: 1905446275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 296, z: -907.161}
+  m_LocalPosition: {x: 0, y: 296, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3019,7 +3017,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085476394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1247.3464}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3750001, y: 1.3750001, z: 1.3750001}
   m_ConstrainProportionsScale: 0
   m_Children: []
