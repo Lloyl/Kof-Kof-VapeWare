@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Game.Scripts.Game_Manager;
 using UnityEngine;
@@ -6,21 +5,15 @@ using UnityEngine;
 public class SCGameManager : MonoBehaviour, IGame
 {
     public bool IsGameRunning { get; set; }
-    
-    private PlayerCollision _playerCollision;
 
     [SerializeField] private GameObject victory;
-
     [SerializeField] private GameObject lost;
-    [SerializeField] private GameObject gameOverBackground;
-
-    [SerializeField] private GameObject victoryBackground;
 
     private void Start()
     {
-        AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
+        // AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
         
-        GameManager.Instance.CurrentGameManager = this;
+        // GameManager.Instance.CurrentGameManager = this;
         IsGameRunning = true;
     }
 
@@ -35,13 +28,11 @@ public class SCGameManager : MonoBehaviour, IGame
     public void Win()
     {
         victory.SetActive(true);
-        victoryBackground.SetActive(true);
     }
 
     public void Lost()
     {
         lost.SetActive(true);
-        gameOverBackground.SetActive(true);
     }
     
     public void GameOver()
@@ -54,6 +45,6 @@ public class SCGameManager : MonoBehaviour, IGame
         if (win) Win();
         else Lost();
         yield return new WaitForSeconds(1.5f); // animation time
-        GameManager.Instance.GameResult(win);
+        // GameManager.Instance.GameResult(win);
     }
 }

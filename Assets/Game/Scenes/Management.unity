@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b6bee5347c7024081813555d9406bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGamesCount: 2
+  initialGamesCount: 7
   miniGamesList:
   - name: 0
     message: MARQUEZ POUR ECONOMISER
