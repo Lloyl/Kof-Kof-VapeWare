@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator EndGame(bool win)
     {
         CurrentGameManager = null;
-        
-        if (win) GameStats.Instance.score += Constants.WIN_SCORE;
+
+        if (win) GameStats.Instance.score += Constants.WIN_SCORE + Mathf.RoundToInt(_remainingTime);
 
         UIManager.Instance.SetBackgroundActive(true);
         UIManager.Instance.SetCountdownActive(false);
