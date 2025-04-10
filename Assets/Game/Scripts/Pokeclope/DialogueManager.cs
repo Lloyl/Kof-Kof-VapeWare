@@ -1,7 +1,11 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using TMPro;
 public class DialogueManager : MonoBehaviour 
 {
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI dialogueText;
     private void Start()
     {
         
@@ -9,6 +13,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Start of dialogue");
+
+        nameText.text = dialogue.name;
 
         string sentence = dialogue.sentences[UnityEngine.Random.Range(0, dialogue.sentences.Length)];
 
@@ -18,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence(string sentence)
     {
 
-        Debug.Log(sentence);
+        dialogueText.text = sentence;
         EndDialogue();
     }
 
