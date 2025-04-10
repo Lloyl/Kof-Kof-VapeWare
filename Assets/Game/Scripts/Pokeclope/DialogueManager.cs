@@ -1,37 +1,25 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 public class DialogueManager : MonoBehaviour 
 {
-    public Queue sentences;
     private void Start()
     {
-        sentences = new Queue<string>();   
+        
     }
-    public void StartDialogue (Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Start of dialogue");
-        sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
+        string sentence = dialogue.sentences[UnityEngine.Random.Range(0, dialogue.sentences.Length)];
 
-        DisplayNextSentence();
+        DisplayNextSentence(sentence);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(string sentence)
     {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
 
-        string sentence = sentences.Dequeue();
         Debug.Log(sentence);
-
+        EndDialogue();
     }
 
     public void EndDialogue()
