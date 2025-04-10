@@ -6,6 +6,8 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+
+    public Animator animator;
     private void Start()
     {
         
@@ -13,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Start of dialogue");
-
+        animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
         string sentence = dialogue.sentences[UnityEngine.Random.Range(0, dialogue.sentences.Length)];
@@ -30,6 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        animator.SetBool("IsOpen", false);
         Debug.Log("End of dialogue");
     }
 }
