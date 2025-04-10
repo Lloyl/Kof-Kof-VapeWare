@@ -8,6 +8,10 @@ public class ScoreScene : MonoBehaviour
     [SerializeField] private Image    background;
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private Image[]  animations;
+
+    [SerializeField] private Sprite spriteWin;
+    [SerializeField] private Sprite spriteLoose;
 
     public void ActivateScoreUI(bool win)
     {
@@ -18,6 +22,14 @@ public class ScoreScene : MonoBehaviour
             : Constants.LOSE_COLOR;
 
         resultText.text = win ? "GAGNÉ!" : "PERDU!";
+
+        foreach (var image in animations)
+        {
+            image.sprite = win
+                ? spriteWin
+                : spriteLoose;
+        }
+
         StartCoroutine(QuitScore());
     }
 
