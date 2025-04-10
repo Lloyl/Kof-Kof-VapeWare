@@ -8,17 +8,28 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     public Animator animator;
-    private void Start()
+
+    [System.Serializable]
+    public struct Dialogue
     {
-        
+        [TextArea(3, 10)]
+        public string sentence;
+        [TextArea(3, 10)]
+        public string response;
+        public string name;
+
     }
-    public void StartDialogue(Dialogue dialogue)
+
+    [SerializeField]
+    public Dialogue[] dialogues;
+    public void StartDialogue()
     {
         Debug.Log("Start of dialogue");
         animator.SetBool("IsOpen", true);
+        var dialogue = dialogues[UnityEngine.Random.Range(0, dialogues.Length)];
         nameText.text = dialogue.name;
 
-        string sentence = dialogue.sentences[UnityEngine.Random.Range(0, dialogue.sentences.Length)];
+        string sentence = dialogue.sentence;
 
         DisplayNextSentence(sentence);
     }
