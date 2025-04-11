@@ -38,12 +38,12 @@ Le joueur doit brosser les dents de son personnage avec un mouvement de va-et-vi
 
 -> Status: NON REPRIS
 
-## PrendsTonSpray
+### PrendsTonSpray
 Aucune idée de ce que c'est mdr mais c'était un dossier dans le projet des P9.
 
 -> Status: SUPPRIMÉ
 
-## ArgentOuClope
+### ArgentOuClope
 Aucune idée de ce que c'est mdr mais c'était un dossier dans le projet des P9.
 
 -> Status: SUPPRIMÉ
