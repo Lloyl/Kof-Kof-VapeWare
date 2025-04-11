@@ -31,7 +31,7 @@ Le joueur doit tirer dans le but (les économies) en évitant le gardien (la clo
 ### SautDeClope
 Le joueur doit sauter au dessus d'une haie de clopes dans sa course.
 
--> Status: NON SUPPRIMÉ DU JEU MAIS NON REPRIS
+-> Status: REPRIS
 
 ### BrosseToiLesDents
 Le joueur doit brosser les dents de son personnage avec un mouvement de va-et-vient pour enlever le jaune de la cigarette.
