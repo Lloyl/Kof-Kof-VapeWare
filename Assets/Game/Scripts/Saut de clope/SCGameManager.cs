@@ -11,9 +11,9 @@ public class SCGameManager : MonoBehaviour, IGame
 
     private void Start()
     {
-        // AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
+        AudioManager.Instance.PlayAudio(Audio.SC_AMBIANCE);
         
-        // GameManager.Instance.CurrentGameManager = this;
+        GameManager.Instance.CurrentGameManager = this;
         IsGameRunning = true;
     }
 
@@ -45,6 +45,6 @@ public class SCGameManager : MonoBehaviour, IGame
         if (win) Win();
         else Lost();
         yield return new WaitForSeconds(1.5f); // animation time
-        // GameManager.Instance.GameResult(win);
+        GameManager.Instance.GameResult(win);
     }
 }

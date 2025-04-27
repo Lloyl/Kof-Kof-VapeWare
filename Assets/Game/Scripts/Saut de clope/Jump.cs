@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Jump : MonoBehaviour
 {
@@ -6,35 +8,60 @@ public class Jump : MonoBehaviour
     private                  CharacterController _characterController;
     private                  Vector3             _moveDir;
     [SerializeField] private Animator            anim;
-
+    private bool                                _jumping = true;
+    private float _startHeight = 0;
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _moveDir.y = 0;
+        _startHeight = _characterController.transform.position.y;
+        Debug.Log(_startHeight);
     }
 
     private void LateUpdate()
     {
-        _moveDir = new Vector3(_moveDir.x, _moveDir.y, _moveDir.z);
+        //_moveDir = new Vector3(_moveDir.x, _moveDir.y, _moveDir.z);
+        bool grounded = false;
 
-
-
+        if (!_jumping)
+        {
 #if UNITY_EDITOR || UNITY_STANDALONE // si on est sur PC
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _characterController.isGrounded){
-            _moveDir.y = jumpForce;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+#else // si on est sur mobile
+            if (Input.touches.Length >= 1)
+#endif  
+            {
+                _moveDir.y = jumpForce;
+                _jumping = true;
+                Debug.Log("JUMP");
+                grounded = false;
+            }
+            else
+            {
+                grounded = true;
+                _moveDir.y = (_startHeight - _characterController.transform.position.y) * Time.deltaTime;
+            }
         }
-        #endif
-
-        #if UNITY_ANDROID || UNITY_IPHONE // si on est sur mobile
-        if(Input.touches.Length >= 1 && _characterController.isGrounded){
-            _moveDir.y = jumpForce;
+        else // jumping
+        {
+            if(_characterController.transform.position.y > _startHeight)    // Above the ground
+            {
+                _moveDir.y -= gravity * Time.deltaTime;
+                grounded = false;
+            }
+            else
+            {
+                grounded = true;
+                _jumping = false;
+                Debug.Log("END JUMP");
+                _moveDir.y = (_startHeight - _characterController.transform.position.y) * Time.deltaTime;
+            }
         }
-        #endif
-        _moveDir.y -= gravity * Time.deltaTime;
         _characterController.Move(_moveDir * Time.deltaTime);
-
-        anim.SetBool(_IS_GROUNDED, _characterController.isGrounded);
+        Debug.Log("movdir : " + _moveDir + "; delta time : " + Time.deltaTime + "; gronded :" + grounded + "; pos : " + _characterController.transform.position + "; jumping :" + _jumping);
+        anim.SetBool(_IS_GROUNDED, grounded);
     }
 }

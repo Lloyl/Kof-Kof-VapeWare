@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         for (var i = 0; i < GameStats.Instance.initialGamesCount; i++)
         {
-            var rand = Random.Range(0, GameStats.Instance.miniGames.Count - 1);
+            var rand = Random.Range(0, GameStats.Instance.miniGames.Count);
 
             _shuffledMiniGames.Add(GameStats.Instance.miniGames[rand]);
         }

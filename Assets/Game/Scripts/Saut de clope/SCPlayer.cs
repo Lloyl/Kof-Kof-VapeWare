@@ -15,7 +15,7 @@ public class SCPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(Vector3.right * _speed, ForceMode.Impulse);
+        transform.Translate(Vector3.right * _speed);
     }
 
     private void OnTriggerEnter(Collider other)
