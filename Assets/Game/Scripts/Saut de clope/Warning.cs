@@ -19,7 +19,7 @@ public class Warning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(Obstacle.position.x - (Character.position.x + 5)) < warning_distance)
+        if (Mathf.Abs(Obstacle.position.x - (Character.position.x + 7)) < warning_distance)
         {
             sprite.enabled = true;
         }
