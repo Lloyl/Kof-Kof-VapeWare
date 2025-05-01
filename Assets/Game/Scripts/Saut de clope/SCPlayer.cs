@@ -1,39 +1,33 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SCPlayer : MonoBehaviour
 {
-    private static readonly  int       _IS_DOWN = Animator.StringToHash("IsDown");
+    private static readonly int _IS_DOWN = Animator.StringToHash("IsDown");
+
     [SerializeField] private Animator  animator;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float     _speed;
+    [SerializeField] private float     speed;
 
-    private       bool  _isHit;
-    private const float _DELAY_BEFORE_FALL = 0.0001f;
+    public bool isHit { get; private set; }
 
     private void FixedUpdate()
     {
-        rb.AddForce(Vector3.right * _speed, ForceMode.Impulse);
+        transform.Translate(Vector3.right * speed);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag(Constants.TAG_CLOPE) || _isHit) return;
+        if (!other.gameObject.CompareTag(Constants.TAG_CLOPE) || isHit) return;
 
-        _isHit = true;
-        StartCoroutine(TriggerFallAnimation());
+        isHit = true;
+        StartCoroutine(LoseAnimation());
     }
-
-    private IEnumerator TriggerFallAnimation()
+    
+    private IEnumerator LoseAnimation()
     {
-        yield return new WaitForSeconds(_DELAY_BEFORE_FALL);
         animator.SetBool(_IS_DOWN, true);
-    }
-
-    public bool GetIsHit()
-    {
-        return _isHit;
+        yield return new WaitForSeconds(0.6f);
+        speed = 0.15f;
     }
 }
