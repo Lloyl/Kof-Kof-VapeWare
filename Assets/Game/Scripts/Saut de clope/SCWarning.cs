@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Warning : MonoBehaviour
+public class SCWarning : MonoBehaviour
 {
     [SerializeField]
     private Transform Character;

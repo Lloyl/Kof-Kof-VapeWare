@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Jump : MonoBehaviour
+public class SCJump : MonoBehaviour
 {
     private static readonly  int                 _IS_GROUNDED = Animator.StringToHash("IsGrounded");
     private                  CharacterController _characterController;
@@ -18,7 +18,6 @@ public class Jump : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _moveDir.y = 0;
         _startHeight = _characterController.transform.position.y;
-        Debug.Log(_startHeight);
     }
 
     private void LateUpdate()
@@ -36,7 +35,6 @@ public class Jump : MonoBehaviour
             {
                 _moveDir.y = jumpForce;
                 _jumping = true;
-                Debug.Log("JUMP");
                 grounded = false;
             }
             else
@@ -56,12 +54,10 @@ public class Jump : MonoBehaviour
             {
                 grounded = true;
                 _jumping = false;
-                Debug.Log("END JUMP");
                 _moveDir.y = (_startHeight - _characterController.transform.position.y) * Time.deltaTime;
             }
         }
         _characterController.Move(_moveDir * Time.deltaTime);
-        Debug.Log("movdir : " + _moveDir + "; delta time : " + Time.deltaTime + "; gronded :" + grounded + "; pos : " + _characterController.transform.position + "; jumping :" + _jumping);
         anim.SetBool(_IS_GROUNDED, grounded);
     }
 }

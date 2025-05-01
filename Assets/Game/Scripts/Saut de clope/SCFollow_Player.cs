@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Follow_Player : MonoBehaviour
+public class SCFollow_Player : MonoBehaviour
 {
     [SerializeField] public Transform _player;
     [SerializeField] public float offsetX;    
