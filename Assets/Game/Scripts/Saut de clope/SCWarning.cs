@@ -2,30 +2,20 @@ using UnityEngine;
 
 public class SCWarning : MonoBehaviour
 {
-    [SerializeField]
-    private Transform Character;
-    [SerializeField]
-    private Transform Obstacle;
-    [SerializeField]
-    public SpriteRenderer sprite;
-    [SerializeField]
-    private float warning_distance;
+    [SerializeField] private Transform character;
+    [SerializeField] private Transform obstacle; 
+    [SerializeField] public SpriteRenderer sprite;
+    [SerializeField] private float warningDistance;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         sprite.enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Mathf.Abs(Obstacle.position.x - (Character.position.x + 7)) < warning_distance)
-        {
-            sprite.enabled = true;
-        }
-        else
-        {
-            sprite.enabled = false;
-        }
+        sprite.enabled = Mathf.Abs(obstacle.position.x - (character.position.x + 7)) < warningDistance;
     }
 }

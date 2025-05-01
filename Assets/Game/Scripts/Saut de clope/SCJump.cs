@@ -1,63 +1,63 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 public class SCJump : MonoBehaviour
 {
-    private static readonly  int                 _IS_GROUNDED = Animator.StringToHash("IsGrounded");
-    private                  CharacterController _characterController;
+    private static readonly int _IS_GROUNDED = Animator.StringToHash("IsGrounded");
+
+    [SerializeField] private Animator anim;
+    [SerializeField] private float    gravity;
+    [SerializeField] private float    jumpForce;
+
+    [SerializeField] private CharacterController characterController;
     private                  Vector3             _moveDir;
-    [SerializeField] private Animator            anim;
-    private bool                                _jumping = true;
-    private float _startHeight = 0;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpForce;
+    private                  bool                _jumping = true;
+    private                  float               _startHeight;
 
     private void Start()
     {
-        _characterController = GetComponent<CharacterController>();
-        _moveDir.y = 0;
-        _startHeight = _characterController.transform.position.y;
+        _moveDir.y   = 0;
+        _startHeight = characterController.transform.position.y;
     }
 
     private void LateUpdate()
     {
-        //_moveDir = new Vector3(_moveDir.x, _moveDir.y, _moveDir.z);
-        bool grounded = false;
+        var grounded = false;
 
         if (!_jumping)
         {
-#if UNITY_EDITOR || UNITY_STANDALONE // si on est sur PC
+            #if UNITY_EDITOR || UNITY_STANDALONE // si on est sur PC
             if (Input.GetKeyDown(KeyCode.Mouse0))
-#else // si on est sur mobile
+                #else // si on est sur mobile
             if (Input.touches.Length >= 1)
-#endif  
+                #endif
             {
                 _moveDir.y = jumpForce;
-                _jumping = true;
-                grounded = false;
+                _jumping   = true;
             }
             else
             {
-                grounded = true;
-                _moveDir.y = (_startHeight - _characterController.transform.position.y) * Time.deltaTime;
+                grounded   = true;
+                _moveDir.y = (_startHeight - characterController.transform.position.y) * Time.deltaTime;
             }
         }
         else // jumping
         {
-            if(_characterController.transform.position.y > _startHeight)    // Above the ground
+            if (characterController.transform.position.y > _startHeight) // Above the ground
             {
                 _moveDir.y -= gravity * Time.deltaTime;
-                grounded = false;
             }
             else
             {
-                grounded = true;
-                _jumping = false;
-                _moveDir.y = (_startHeight - _characterController.transform.position.y) * Time.deltaTime;
+                grounded   = true;
+                _jumping   = false;
+                _moveDir.y = (_startHeight - characterController.transform.position.y) * Time.deltaTime;
             }
         }
-        _characterController.Move(_moveDir * Time.deltaTime);
+
+        characterController.Move(_moveDir * Time.deltaTime);
         anim.SetBool(_IS_GROUNDED, grounded);
     }
 }

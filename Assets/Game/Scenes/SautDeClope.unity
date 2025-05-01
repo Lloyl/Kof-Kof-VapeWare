@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 591183926}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1034,6 +1034,7 @@ MonoBehaviour:
   anim: {fileID: 347382789}
   gravity: 35
   jumpForce: 19.2
+  characterController: {fileID: 591183924}
 --- !u!33 &591183922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1051,7 +1052,7 @@ Transform:
   m_GameObject: {fileID: 591183917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: 0, z: 0}
+  m_LocalPosition: {x: 200, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1124,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 347382789}
   rb: {fileID: 591183925}
-  _speed: 0.4
+  speed: 0.4
 --- !u!1001 &605560897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2354,7 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c779225683ab3743b8ce1bfdb06ba98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 591183923}
+  player: {fileID: 591183923}
   offsetX: 1.8
 --- !u!4 &961505889 stripped
 Transform:
@@ -2960,6 +2961,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victory: {fileID: 1260048192}
   lost: {fileID: 1316895071}
+  player: {fileID: 591183926}
+  clope: {fileID: 1670115130}
+  rangeSpawn: 30
 --- !u!114 &1349935831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2972,10 +2976,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d10d9521c5da1949b1c039fb03d3c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character: {fileID: 591183923}
-  Obstacle: {fileID: 2085172993}
+  character: {fileID: 591183923}
+  obstacle: {fileID: 1670115134}
   sprite: {fileID: 1593588559}
-  warning_distance: 10
+  warningDistance: 10
 --- !u!1 &1504976127
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,8 +4675,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1557236098}
-  - {fileID: 591183923}
   - {fileID: 945943922}
+  - {fileID: 591183923}
   - {fileID: 1349935829}
   - {fileID: 86887217}
   - {fileID: 1260048195}

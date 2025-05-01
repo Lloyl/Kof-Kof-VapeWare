@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRemainingGames()
     {
-        remainingGames.text = GameStats.Instance.remaining.ToString();
+        remainingGames.text = $"Restant: {GameStats.Instance.remaining.ToString()}";
     }
     
     public void UpdateCountdown(int time)
