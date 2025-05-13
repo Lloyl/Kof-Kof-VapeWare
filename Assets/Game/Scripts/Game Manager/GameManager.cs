@@ -66,9 +66,16 @@ public class GameManager : MonoBehaviour
 
     private void ShuffleMiniGames()
     {
+        var lastPicked = -1;
         for (var i = 0; i < GameStats.Instance.initialGamesCount; i++)
         {
             var rand = Random.Range(0, GameStats.Instance.miniGames.Count);
+            while (rand == lastPicked)
+            {
+                rand = Random.Range(0, GameStats.Instance.miniGames.Count);
+            }
+            
+            lastPicked = rand;
 
             _shuffledMiniGames.Add(GameStats.Instance.miniGames[rand]);
         }
@@ -84,6 +91,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateCountdown(game.time);
         _remainingTime = game.time;
         
+        UIManager.Instance.UpdateGameStart(game);
         LevelLoader.Instance.LoadLevel(GameStats.GetSceneName(game.name), LoadSceneMode.Additive);
     }
     

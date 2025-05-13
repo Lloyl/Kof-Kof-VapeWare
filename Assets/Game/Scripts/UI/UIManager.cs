@@ -42,10 +42,7 @@ public class UIManager : MonoBehaviour
         retryTab.SetActive(true);
         AudioManager.Instance.GameOverAudioMenu();
     }
-
-    // Module non repris, mais qui pourrait être utile (affiche comment jouer au mini jeu)
-
-    // --------------------------
+    
     public void UpdateGameStart(MiniGame game)
     {
         message.text = game.message;
@@ -59,9 +56,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         gamePlayTab.SetActive(false);
     }
-
-    // --------------------------
-
+    
     public void UpdateRemainingGames()
     {
         remainingGames.text = $"Restant: {GameStats.Instance.remaining.ToString()}";
