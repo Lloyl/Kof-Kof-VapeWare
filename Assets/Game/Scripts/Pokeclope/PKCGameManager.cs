@@ -16,6 +16,8 @@ public class PKCGameManager : MonoBehaviour, IGame
 
     public Animator animatorDialogue;
     public Animator animatorResponses;
+    public Animator animatorClope;
+    public Animator animatorPlayer;
 
     private int responseId ;
 
@@ -43,7 +45,7 @@ public class PKCGameManager : MonoBehaviour, IGame
     }
     private IEnumerator LaunchGame()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         StartDialogue();
     }
 
@@ -82,9 +84,11 @@ public class PKCGameManager : MonoBehaviour, IGame
     {
         if (buttonId == responseId)
         {
+            Win();
             Debug.Log("Correct response");
         } else
         {
+            Lost();
             Debug.Log("Wrong response");
         }
         EndDialogue();
@@ -100,12 +104,12 @@ public class PKCGameManager : MonoBehaviour, IGame
 
     public void Win()
     {
-        throw new NotImplementedException();
+        animatorClope.SetTrigger("Defeat");
     }
 
     public void Lost()
     {
-        throw new NotImplementedException();
+        animatorPlayer.SetTrigger("Defeat");
     }
 
     public void GameOver()
