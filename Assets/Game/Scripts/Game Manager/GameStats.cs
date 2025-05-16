@@ -24,7 +24,8 @@ public class GameStats : MonoBehaviour
     public enum GameName
     {
         BABY_CLOPE,
-        SAUT_DE_CLOPE
+        SAUT_DE_CLOPE,
+        POKECLOPE
     }
 
     public static string GetSceneName(GameName gameName)
@@ -33,6 +34,7 @@ public class GameStats : MonoBehaviour
         {
             GameName.BABY_CLOPE   => "BabyClope",
             GameName.SAUT_DE_CLOPE => "SautDeClope",
+            GameName.POKECLOPE => "Pokeclope",
             _                     => null
         };
     }

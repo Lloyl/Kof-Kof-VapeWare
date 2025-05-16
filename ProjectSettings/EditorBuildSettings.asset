@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/SautDeClope.unity
     guid: 117dbfc5345d47949a098ab003d5d1ef
+  - enabled: 1
+    path: Assets/Game/Scenes/Pokeclope.unity
+    guid: 3ccebd467f9fca544bf81d862b440624
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: cee7b574a22e2334b9478cd799e6d61e, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a5f1b16d45a16a84aa4c807a19431f76, type: 2}
