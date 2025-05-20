@@ -1,0 +1,12 @@
+# ninja log v5
+373	5423	7691118191182042	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ca31bbe067494e76
+43	5535	7691118194356058	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	52b656b207e0b2a9
+349	5537	7691118194406775	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	2c0dc613601b1297
+662	5540	7691118194376374	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	9bd535229f5b4c04
+411	5563	7691118194548654	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dd83f3a8a25569b3
+567	5614	7691118196956715	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	288069c20d7341c4
+118	5724	7691118198049318	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	708df7459f219dd1
+224	6505	7691118205688991	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5ce51714f7f85191
+5540	6618	7691118207018871	C:/Users/stron/source/KOF-KOF/Kof-Kof-VapeWare/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3x4y2z55/obj/arm64-v8a/libswappywrapper.so	842f5d9d4933171f
+12	6921	7691118209969092	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	63c64fc9d38179d9
+6922	7430	7691118215209136	C:/Users/stron/source/KOF-KOF/Kof-Kof-VapeWare/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3x4y2z55/obj/arm64-v8a/libgame.so	784aea321c8c4806
