@@ -17,6 +17,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip butBaby;
     public AudioClip loupeBaby;
 
+    [Header("Brosse")]
+    public AudioClip outil_btd;
+    public AudioClip win_btd;
+    public AudioClip lose_btd;
+
     [SerializeField] private AudioClip music;
     [SerializeField] private AudioClip defeatMusic;
 
@@ -51,7 +56,10 @@ public class AudioManager : MonoBehaviour
             { Audio.SC_LOSE, defaiteSautDeClope },
             { Audio.BC_TIR, tirBaby },
             { Audio.BC_WIN, butBaby },
-            { Audio.BC_LOSE, loupeBaby }
+            { Audio.BC_LOSE, loupeBaby },
+            { Audio.BTD_OUTIL, outil_btd },
+            { Audio.BTD_WIN, win_btd },
+            { Audio.BTD_LOSE, lose_btd },
         };
     }
 

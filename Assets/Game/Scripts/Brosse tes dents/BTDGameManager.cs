@@ -3,12 +3,13 @@ using Game.Scripts.Game_Manager;
 using UnityEngine;
 public class BTDGameManager : MonoBehaviour, IGame
 {
-    public bool IsGameRunning { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool IsGameRunning {get ;set;}
 
+    [SerializeField] public BTDLaveDents laveDents;
     public void GameOver()
     {
         IsGameRunning = false;
-        StartCoroutine(Result(false));
+        StartCoroutine(Result(laveDents.hasWin));
     }
 
     public void Lost()
@@ -24,7 +25,7 @@ public class BTDGameManager : MonoBehaviour, IGame
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.CurrentGameManager = this;
+        //GameManager.Instance.CurrentGameManager = this;
         IsGameRunning = true;
     }
 

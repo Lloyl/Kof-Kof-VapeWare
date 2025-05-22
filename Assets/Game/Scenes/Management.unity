@@ -2332,7 +2332,10 @@ MonoBehaviour:
   tirBaby: {fileID: 8300000, guid: 0ef8305a004b2b34b9d7276a45187d0c, type: 3}
   butBaby: {fileID: 8300000, guid: d49ad12efd79df54980629b5bc0a9548, type: 3}
   loupeBaby: {fileID: 8300000, guid: 3a5ed5ac42bf44642a7001743721f47f, type: 3}
-  music: {fileID: 8300000, guid: 459339617e073d34e977025fe5e8ab98, type: 3}
+  outil_btd: {fileID: 0}
+  win_btd: {fileID: 0}
+  lose_btd: {fileID: 0}
+  music: {fileID: 8300000, guid: bec8e1dc38151e143b968d82c778a0f8, type: 3}
   defeatMusic: {fileID: 8300000, guid: 0ab5ae11985112e438004474dc58b626, type: 3}
   effectAudioSource: {fileID: 1123783044}
   musicAudioSource: {fileID: 1123783046}
@@ -2777,6 +2780,10 @@ MonoBehaviour:
     message: "SAUTEZ POUR \xC9VITER LA CIGARETTE"
     interaction: 0
     time: 5
+  - name: 2
+    message: BROSSE
+    interaction: 0
+    time: 6
 --- !u!114 &1499817321
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,4 +25,9 @@ public enum Audio
     SC_AMBIANCE,
     SC_WIN,
     SC_LOSE,
+
+    // Brosse tes dents
+    BTD_OUTIL,
+    BTD_WIN,
+    BTD_LOSE,
 }
