@@ -143,3 +143,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Assets/Game/Scenes/OuvreLafenêtre.unity
 /Assets/Game/Scenes/OuvreLafenêtre.unity.meta
+/.erp
