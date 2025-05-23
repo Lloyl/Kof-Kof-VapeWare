@@ -2292,7 +2292,7 @@ MonoBehaviour:
   tirBaby: {fileID: 8300000, guid: 0ef8305a004b2b34b9d7276a45187d0c, type: 3}
   butBaby: {fileID: 8300000, guid: d49ad12efd79df54980629b5bc0a9548, type: 3}
   loupeBaby: {fileID: 8300000, guid: 3a5ed5ac42bf44642a7001743721f47f, type: 3}
-  music: {fileID: 8300000, guid: 459339617e073d34e977025fe5e8ab98, type: 3}
+  music: {fileID: 8300000, guid: 4b20d7d8a1a1ce146a034e4e62369352, type: 3}
   defeatMusic: {fileID: 8300000, guid: 0ab5ae11985112e438004474dc58b626, type: 3}
   effectAudioSource: {fileID: 1123783044}
   musicAudioSource: {fileID: 1123783046}
